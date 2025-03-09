@@ -140,8 +140,3 @@ TEST(CircleTest, NegativeArea) {
     EXPECT_TRUE(std::isnan(c.getFerence()));
     EXPECT_NEAR(c.getArea(), -10.0, tol);
 }
-
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
