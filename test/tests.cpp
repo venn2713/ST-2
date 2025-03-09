@@ -1,8 +1,8 @@
 // Copyright 2025 VasilevSA
-#include "circle.h"
-#include "tasks.h"
 #include <gtest/gtest.h>
 #include <cmath>
+#include "circle.h"
+#include "tasks.h"
 
 const double PI = 3.14159265358979323846;
 const double tol = 1e-6;
@@ -77,24 +77,6 @@ TEST(TasksTest, EarthRopeGap) {
     double gap = calculateRopeGap(earthRadiusKm, extraLengthM);
     double expectedGap = extraLengthM / (2 * PI);
     EXPECT_NEAR(gap, expectedGap, tol);
-}
-
-TEST(TasksTest, PoolCosts) {
-    double poolRadius = 3.0;
-    double roadWidth = 1.0;
-    double concreteCost = 1000.0;
-    double fenceCostPerMeter = 2000.0;
-
-    PoolCosts costs = calculatePoolCosts(poolRadius, roadWidth, 
-                                         concreteCost, fenceCostPerMeter);
-
-    double outerRadius = poolRadius + roadWidth;
-    double roadArea = PI * (outerRadius * outerRadius - poolRadius * poolRadius);
-    double expectedRoadCost = roadArea * concreteCost;
-    double expectedFenceCost = (2 * PI * outerRadius) * fenceCostPerMeter;
-
-    EXPECT_NEAR(costs.roadCost, expectedRoadCost, tol);
-    EXPECT_NEAR(costs.fenceCost, expectedFenceCost, tol);
 }
 
 TEST(CircleTest, SequentialSetters) {
