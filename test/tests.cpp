@@ -1,6 +1,8 @@
-#include <gtest/gtest.h>
+// Copyright 2025 VasilevSA
+
 #include "circle.h"
 #include "tasks.h"
+#include <gtest/gtest.h>
 #include <cmath>
 
 const double PI = 3.14159265358979323846;
@@ -83,7 +85,8 @@ TEST(TasksTest, PoolCosts) {
     double roadWidth = 1.0;
     double concreteCost = 1000.0;
     double fenceCostPerMeter = 2000.0;
-    PoolCosts costs = calculatePoolCosts(poolRadius, roadWidth, concreteCost, fenceCostPerMeter);
+    PoolCosts costs = calculatePoolCosts(
+        poolRadius, roadWidth, concreteCost, fenceCostPerMeter);
     double outerRadius = poolRadius + roadWidth;
     double roadArea = PI * (outerRadius * outerRadius - poolRadius * poolRadius);
     double expectedRoadCost = roadArea * concreteCost;
@@ -194,7 +197,8 @@ TEST(TasksTest, HighPoolCosts) {
     double roadWidth = 10.0;
     double concreteCost = 5000.0;
     double fenceCostPerMeter = 3000.0;
-    PoolCosts costs = calculatePoolCosts(poolRadius, roadWidth, concreteCost, fenceCostPerMeter);
+    PoolCosts costs = calculatePoolCosts(
+        poolRadius, roadWidth, concreteCost, fenceCostPerMeter);
     double outerRadius = poolRadius + roadWidth;
     double roadArea = PI * (outerRadius * outerRadius - poolRadius * poolRadius);
     double expectedRoadCost = roadArea * concreteCost;
