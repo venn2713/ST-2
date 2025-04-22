@@ -2,8 +2,8 @@
 
 #include "circle.h"
 #include "tasks.h"
-#include <gtest/gtest.h>
 #include <cmath>
+#include <gtest/gtest.h>
 
 const double PI = 3.14159265358979323846;
 const double tol = 1e-6;
@@ -205,4 +205,9 @@ TEST(TasksTest, HighPoolCosts) {
     double expectedFenceCost = (2 * PI * outerRadius) * fenceCostPerMeter;
     EXPECT_NEAR(costs.roadCost, expectedRoadCost, tol);
     EXPECT_NEAR(costs.fenceCost, expectedFenceCost, tol);
+}
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
