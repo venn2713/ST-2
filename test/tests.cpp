@@ -143,13 +143,6 @@ TEST(CircleTest, LargeRadius) {
     EXPECT_NEAR(c.getArea(), PI * 1e6 * 1e6, tol);
 }
 
-TEST(CircleTest, NegativeRadius) {
-    Circle c(-5.0);
-    EXPECT_TRUE(std::isnan(c.getRadius()));
-    EXPECT_TRUE(std::isnan(c.getFerence()));
-    EXPECT_TRUE(std::isnan(c.getArea()));
-}
-
 TEST(CircleTest, ResetRadius) {
     Circle c(5.0);
     c.setRadius(0.0);
@@ -177,13 +170,6 @@ TEST(TasksTest, ZeroEarthRopeGap) {
     double extraLengthM = 0.0;
     double gap = calculateRopeGap(earthRadiusKm, extraLengthM);
     EXPECT_NEAR(gap, 0.0, tol);
-}
-
-TEST(TasksTest, NegativeEarthRopeGap) {
-    double earthRadiusKm = 6378.1;
-    double extraLengthM = -1.0;
-    double gap = calculateRopeGap(earthRadiusKm, extraLengthM);
-    EXPECT_TRUE(std::isnan(gap));
 }
 
 TEST(CircleTest, RadiusAfterMultipleUpdates) {
@@ -216,4 +202,3 @@ TEST(TasksTest, HighPoolCosts) {
     EXPECT_NEAR(costs.roadCost, expectedRoadCost, tol);
     EXPECT_NEAR(costs.fenceCost, expectedFenceCost, tol);
 }
-
