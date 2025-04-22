@@ -136,7 +136,84 @@ TEST(CircleTest, NegativeArea) {
     EXPECT_NEAR(c.getArea(), -10.0, tol);
 }
 
-int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+TEST(CircleTest, LargeRadius) {
+    Circle c(1e6);
+    EXPECT_NEAR(c.getRadius(), 1e6, tol);
+    EXPECT_NEAR(c.getFerence(), 2 * PI * 1e6, tol);
+    EXPECT_NEAR(c.getArea(), PI * 1e6 * 1e6, tol);
 }
+
+TEST(CircleTest, NegativeRadius) {
+    Circle c(-5.0);
+    EXPECT_TRUE(std::isnan(c.getRadius()));
+    EXPECT_TRUE(std::isnan(c.getFerence()));
+    EXPECT_TRUE(std::isnan(c.getArea()));
+}
+
+TEST(CircleTest, ResetRadius) {
+    Circle c(5.0);
+    c.setRadius(0.0);
+    EXPECT_NEAR(c.getRadius(), 0.0, tol);
+    EXPECT_NEAR(c.getFerence(), 0.0, tol);
+    EXPECT_NEAR(c.getArea(), 0.0, tol);
+}
+
+TEST(CircleTest, CompareTwoCircles) {
+    Circle c1(3.0);
+    Circle c2(5.0);
+    EXPECT_GT(c2.getArea(), c1.getArea());
+    EXPECT_GT(c2.getFerence(), c1.getFerence());
+}
+
+TEST(CircleTest, FractionalRadius) {
+    Circle c(0.5);
+    EXPECT_NEAR(c.getRadius(), 0.5, tol);
+    EXPECT_NEAR(c.getFerence(), 2 * PI * 0.5, tol);
+    EXPECT_NEAR(c.getArea(), PI * 0.5 * 0.5, tol);
+}
+
+TEST(TasksTest, ZeroEarthRopeGap) {
+    double earthRadiusKm = 6378.1;
+    double extraLengthM = 0.0;
+    double gap = calculateRopeGap(earthRadiusKm, extraLengthM);
+    EXPECT_NEAR(gap, 0.0, tol);
+}
+
+TEST(TasksTest, NegativeEarthRopeGap) {
+    double earthRadiusKm = 6378.1;
+    double extraLengthM = -1.0;
+    double gap = calculateRopeGap(earthRadiusKm, extraLengthM);
+    EXPECT_TRUE(std::isnan(gap));
+}
+
+TEST(CircleTest, RadiusAfterMultipleUpdates) {
+    Circle c(2.0);
+    c.setRadius(4.0);
+    c.setFerence(2 * PI * 6.0);
+    c.setArea(PI * 16.0);
+    EXPECT_NEAR(c.getRadius(), 4.0, tol);
+    EXPECT_NEAR(c.getFerence(), 2 * PI * 4.0, tol);
+    EXPECT_NEAR(c.getArea(), PI * 16.0, tol);
+}
+
+TEST(CircleTest, VerySmallRadius) {
+    Circle c(1e-9);
+    EXPECT_NEAR(c.getRadius(), 1e-9, tol);
+    EXPECT_NEAR(c.getFerence(), 2 * PI * 1e-9, tol);
+    EXPECT_NEAR(c.getArea(), PI * 1e-9 * 1e-9, tol);
+}
+
+TEST(TasksTest, HighPoolCosts) {
+    double poolRadius = 50.0;
+    double roadWidth = 10.0;
+    double concreteCost = 5000.0;
+    double fenceCostPerMeter = 3000.0;
+    PoolCosts costs = calculatePoolCosts(poolRadius, roadWidth, concreteCost, fenceCostPerMeter);
+    double outerRadius = poolRadius + roadWidth;
+    double roadArea = PI * (outerRadius * outerRadius - poolRadius * poolRadius);
+    double expectedRoadCost = roadArea * concreteCost;
+    double expectedFenceCost = (2 * PI * outerRadius) * fenceCostPerMeter;
+    EXPECT_NEAR(costs.roadCost, expectedRoadCost, tol);
+    EXPECT_NEAR(costs.fenceCost, expectedFenceCost, tol);
+}
+
