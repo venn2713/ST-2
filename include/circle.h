@@ -1,15 +1,15 @@
 // Copyright 2025 VasilevSA
-#ifndef CIRCLE_H
-#define CIRCLE_H
+#ifndef INCLUDE_CIRCLE_H_
+#define INCLUDE_CIRCLE_H_
 
 class Circle {
-private:
+ private:
     double radius;
     double ference;
     double area;
     static constexpr double PI = 3.14159265358979323846;
-public:
-    Circle(double r);
+ public:
+    explicit Circle(double r);
 
     void setRadius(double r);
     void setFerence(double f);
@@ -20,5 +20,4 @@ public:
     double getArea() const;
 };
 
-#endif // CIRCLE_H
-
+#endif // INCLUDE_CIRCLE_H_
