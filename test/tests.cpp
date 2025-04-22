@@ -1,9 +1,9 @@
 // Copyright 2025 VasilevSA
 
 #include "tasks.h"
+#include <gtest/gtest.h>
 #include <cmath>
 #include "circle.h"
-#include <gtest/gtest.h>
 
 const double PI = 3.14159265358979323846;
 const double TOL = 1e-6;
