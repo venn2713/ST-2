@@ -1,8 +1,8 @@
 // Copyright 2025 VasilevSA
 
 #include "tasks.h"
-#include "circle.h"
 #include <cmath>
+#include "circle.h"
 #include <gtest/gtest.h>
 
 const double PI = 3.14159265358979323846;
@@ -157,8 +157,7 @@ TEST(CircleTest, CompareTwoCircles) {
     Circle c2(5.0);
     EXPECT_TRUE(
         c2.getArea() > c1.getArea() ||
-        c2.getFerence() > c1.getFerence()
-    );
+        c2.getFerence() > c1.getFerence());
 }
 
 TEST(CircleTest, FractionalRadius) {
