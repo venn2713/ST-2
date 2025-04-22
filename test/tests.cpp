@@ -1,9 +1,9 @@
 // Copyright 2025 VasilevSA
 
 #include "tasks.h"
+#include "circle.h"
 #include <cmath>
 #include <gtest/gtest.h>
-#include "circle.h"
 
 const double PI = 3.14159265358979323846;
 const double TOL = 1e-6;
@@ -86,10 +86,10 @@ TEST(TasksTest, PoolCosts) {
     double cc = 1000.0;
     double fc = 2000.0;
     PoolCosts c = calculatePoolCosts(pr, rw, cc, fc);
-    double or = pr + rw;
-    double ra = PI * (or * or - pr * pr);
+    double orad = pr + rw;
+    double ra = PI * (orad * orad - pr * pr);
     double erc = ra * cc;
-    double efc = (2 * PI * or) * fc;
+    double efc = (2 * PI * orad) * fc;
     EXPECT_NEAR(c.roadCost, erc, TOL);
     EXPECT_NEAR(c.fenceCost, efc, TOL);
 }
@@ -155,7 +155,10 @@ TEST(CircleTest, ResetRadius) {
 TEST(CircleTest, CompareTwoCircles) {
     Circle c1(3.0);
     Circle c2(5.0);
-    EXPECT_TRUE(c2.getArea() > c1.getArea() || c2.getFerence() > c1.getFerence());
+    EXPECT_TRUE(
+        c2.getArea() > c1.getArea() ||
+        c2.getFerence() > c1.getFerence()
+    );
 }
 
 TEST(CircleTest, FractionalRadius) {
@@ -195,10 +198,10 @@ TEST(TasksTest, HighPoolCosts) {
     double cc = 5000.0;
     double fc = 3000.0;
     PoolCosts c = calculatePoolCosts(pr, rw, cc, fc);
-    double or = pr + rw;
-    double ra = PI * (or * or - pr * pr);
+    double orad = pr + rw;
+    double ra = PI * (orad * orad - pr * pr);
     double erc = ra * cc;
-    double efc = (2 * PI * or) * fc;
+    double efc = (2 * PI * orad) * fc;
     EXPECT_NEAR(c.roadCost, erc, TOL);
     EXPECT_NEAR(c.fenceCost, efc, TOL);
 }
