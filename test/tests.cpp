@@ -1,8 +1,8 @@
 // Copyright 2025 VasilevSA
 
-#include "tasks.h"
 #include <gtest/gtest.h>
 #include <cmath>
+#include "tasks.h"
 #include "circle.h"
 
 const double PI = 3.14159265358979323846;
