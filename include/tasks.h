@@ -7,12 +7,16 @@ struct PoolCosts {
     double fenceCost;
 };
 
-double calculateRopeGap(double earthRadiusKm,
-                        double extraLengthMeters);
+double calculateRopeGap(
+    double earthRadiusKm,
+    double extraLengthMeters
+);
 
-PoolCosts calculatePoolCosts(double poolRadius,
-                             double roadWidth,
-                             double concreteCostPerSquareMeter,
-                             double fenceCostPerMeter);
+PoolCosts calculatePoolCosts(
+    double poolRadius,
+    double roadWidth,
+    double concreteCostPerSquareMeter,
+    double fenceCostPerMeter
+);
 
-#endif // INCLUDE_TASKS_H_
+#endif  // INCLUDE_TASKS_H_
